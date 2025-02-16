@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали фильма</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="movie-details">
+            <!-- Здесь будет информация о фильме -->
+            <button onclick="window.history.back()">Назад</button>
+        </div>
+    </div>
+    <script src="js/details.js"></script>
+
+
+    <script>
+        const apiKey = 'f1305fbd40cf4baf4741767e65b56053'; // Убедитесь, что ключ действителен
+
+        async function handleRecommendation() {
+            // Получаем параметры формы
+            const genre = document.getElementById('genre').value;
+            const mood = document.getElementById('mood').value;
+            const year = document.getElementById('year').value;
+
+            // Формируем URL для запроса фильмов
+            const yearFilter = year === "old" 
+                ? "&primary_release_date.lte=2000" 
+                : "&primary_release_date.gte=2000";
+            
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genre}${yearFilter}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.results.length === 0) {
+                    showResult('Фильмы не найдены');
+                    return;
+                }
+
+                // Выбираем первый фильм для примера
+                const movie = data.results[0];                
+
+                const resultHTML = `
+                    <div class="movie-card">
+                        <h2>${movie.title}</h2>
+                        <div class="screenshots-grid">${screenshotsHTML}</div>
+                        <p>${movie.overview || 'Описание отсутствует'}</p>
+                    </div>
+                `;
+
+                document.getElementById('result').innerHTML = resultHTML;
+
+            } catch (error) {
+                console.error('Ошибка:', error);
+                showResult('Произошла ошибка при загрузке данных');
+            }
+        }

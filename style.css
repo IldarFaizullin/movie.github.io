@@ -1,0 +1,180 @@
+/* Общие стили */
+:root {
+    --primary-color: #2a2a72;
+    --secondary-color: #009ffd;
+    --background-gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    --text-light: #2a2a72;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-color);
+    margin: 0.5rem auto;
+    border-radius: 2px;
+  }
+  
+  /* Форма */
+  form {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  label {
+    font-weight: 600;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  select {
+    appearance: none;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") 
+      no-repeat right 1rem center/16px 16px;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 159, 253, 0.25);
+  }
+  
+  button {
+    background: var(--secondary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 159, 253, 0.4);
+  }
+  
+  button::before {
+    content: '🎬';
+    font-size: 1.2rem;
+  }
+  
+  /* Страница деталей */
+  .movie-poster {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin: 2rem 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .movie-poster:hover {
+    transform: scale(1.03);
+  }
+  
+  .movie-info {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    color: #333;
+    box-shadow: var(--shadow);
+  }
+  
+  .movie-info p {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+  }
+  
+  .movie-info strong {
+    color: var(--primary-color);
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .container {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    select, button {
+      width: 100%;
+    }
+  }
+  
+  /* Анимации */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .container {
+    animation: fadeIn 0.6s ease-out;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .movie-result {
+    margin-top: 2rem;
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.movie-overview {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 1rem;
+}
